@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://xtcfry0ym26v"]
+
+[ext_resource type="PackedScene" uid="uid://chjtbvkj6qix1" path="res://sala/sala.tscn" id="1_haja7"]
+[ext_resource type="ArrayMesh" uid="uid://b21y5ld5dntjh" path="res://recursos/modelos/Turn.res" id="2_rfo0l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_haja7"]
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rfo0l"]
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8fw2r"]
+size = Vector3(4, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_73wt0"]
+size = Vector3(1, 3, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kaghi"]
+size = Vector3(8, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrs5a"]
+size = Vector3(8, 3, 8)
+
+[node name="CurvaEsquerda" instance=ExtResource("1_haja7")]
+tipo = 1
+
+[node name="CollisionShape3D" parent="Colisores/ChaoTeto" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, 4)
+shape = SubResource("BoxShape3D_haja7")
+
+[node name="CollisionShape3D2" parent="Colisores/ChaoTeto" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 4)
+shape = SubResource("BoxShape3D_rfo0l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colisores/Paredes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 2)
+shape = SubResource("BoxShape3D_8fw2r")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Colisores/Paredes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.5, 4)
+shape = SubResource("BoxShape3D_73wt0")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Colisores/Paredes" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 8.5)
+shape = SubResource("BoxShape3D_kaghi")
+
+[node name="CollisionShape3D" parent="Triggers/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 4)
+shape = SubResource("BoxShape3D_wrs5a")
+
+[node name="Mesh" parent="Modelo" index="0"]
+mesh = ExtResource("2_rfo0l")
+
+[node name="Saida" type="Marker3D" parent="Saidas" index="0"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 6)

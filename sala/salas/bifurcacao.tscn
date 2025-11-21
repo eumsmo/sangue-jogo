@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://biibtjokm0igm"]
+
+[ext_resource type="PackedScene" uid="uid://chjtbvkj6qix1" path="res://sala/sala.tscn" id="1_a8mba"]
+[ext_resource type="ArrayMesh" uid="uid://bkmovd1i4v34u" path="res://recursos/modelos/Fork.res" id="2_kk6df"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0e6hh"]
+size = Vector3(12, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3dx5"]
+size = Vector3(12, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xkf3n"]
+size = Vector3(4, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4crl"]
+size = Vector3(12, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6okop"]
+size = Vector3(12, 3, 8)
+
+[node name="Bifurcacao" instance=ExtResource("1_a8mba")]
+tipo = 1
+
+[node name="CollisionShape3D" parent="Colisores/ChaoTeto" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 4)
+shape = SubResource("BoxShape3D_0e6hh")
+
+[node name="CollisionShape3D2" parent="Colisores/ChaoTeto" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 4)
+shape = SubResource("BoxShape3D_p3dx5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colisores/Paredes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 2)
+shape = SubResource("BoxShape3D_xkf3n")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Colisores/Paredes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.5, 2)
+shape = SubResource("BoxShape3D_xkf3n")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Colisores/Paredes" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 8.5)
+shape = SubResource("BoxShape3D_x4crl")
+
+[node name="CollisionShape3D" parent="Triggers/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+shape = SubResource("BoxShape3D_6okop")
+
+[node name="Mesh" parent="Modelo" index="0"]
+mesh = ExtResource("2_kk6df")
+
+[node name="Saida" type="Marker3D" parent="Saidas" index="0"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 6)
+
+[node name="Saida2" type="Marker3D" parent="Saidas" index="1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 6)

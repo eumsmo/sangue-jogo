@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://db21c1uk28vqa"]
+
+[ext_resource type="PackedScene" uid="uid://xtcfry0ym26v" path="res://sala/salas/curva_esq.tscn" id="1_kebjr"]
+
+[node name="CurvaDireita" instance=ExtResource("1_kebjr")]
+
+[node name="CollisionShape3D" parent="Colisores/ChaoTeto" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 4)
+
+[node name="CollisionShape3D2" parent="Colisores/ChaoTeto" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 4)
+
+[node name="CollisionShape3D" parent="Colisores/Paredes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.5, 2)
+
+[node name="CollisionShape3D2" parent="Colisores/Paredes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, 4)
+
+[node name="CollisionShape3D3" parent="Colisores/Paredes" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 8.5)
+
+[node name="CollisionShape3D" parent="Triggers/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 4)
+
+[node name="Mesh" parent="Modelo" index="0"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Saida" parent="Saidas" index="0"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 6)

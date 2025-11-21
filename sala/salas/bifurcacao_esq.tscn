@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://tdsqsrj08mlj"]
+
+[ext_resource type="PackedScene" uid="uid://biibtjokm0igm" path="res://sala/salas/bifurcacao.tscn" id="1_irxmd"]
+
+[node name="BifurcacaoEsquerda" instance=ExtResource("1_irxmd")]
+tipo = 0
+
+[node name="Colisores" parent="." index="0"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.9999995, 0, 6.0000005)
+
+[node name="Triggers" parent="." index="1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.9999995, 0, 6.0000005)
+
+[node name="Modelo" parent="." index="2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.9999995, 0, 6.0000005)
+
+[node name="Saida2" parent="Saidas" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)

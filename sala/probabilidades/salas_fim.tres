@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ProbSalas" load_steps=2 format=3 uid="uid://bffjs1sx55qar"]
+
+[ext_resource type="Script" uid="uid://dfro102dnednm" path="res://sala/probabilidade_salas.gd" id="1_8joax"]
+
+[resource]
+script = ExtResource("1_8joax")
+metadata/_custom_type_script = "uid://dfro102dnednm"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://e651e3fv8fm5"]
+
+[ext_resource type="PackedScene" uid="uid://doaecqpk6gwph" path="res://recursos/modelos/salas.fbx" id="1_pkkca"]
+[ext_resource type="ArrayMesh" uid="uid://d0d5y3vm5lx7n" path="res://recursos/modelos/CleanHall.tres" id="2_joje3"]
+
+[node name="salas" instance=ExtResource("1_pkkca")]
+
+[node name="CleanHall" parent="." index="1"]
+mesh = ExtResource("2_joje3")

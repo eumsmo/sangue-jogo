@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://do5615kfyeed"]
+
+[ext_resource type="Script" uid="uid://bgis8ietk15hj" path="res://jogo.gd" id="1_yq54j"]
+[ext_resource type="Script" uid="uid://dfro102dnednm" path="res://sala/probabilidade_salas.gd" id="2_45nkh"]
+[ext_resource type="Resource" uid="uid://bug8rio53bcms" path="res://sala/probabilidades/prob_de_tipo.tres" id="2_ysdx3"]
+[ext_resource type="Resource" uid="uid://bjqodluuyx37" path="res://sala/probabilidades/salas_continuas.tres" id="3_ysdx3"]
+[ext_resource type="Resource" uid="uid://bujs1xljtmkc1" path="res://sala/probabilidades/salas_curvas.tres" id="4_t8pok"]
+[ext_resource type="Resource" uid="uid://bffjs1sx55qar" path="res://sala/probabilidades/salas_fim.tres" id="5_mtw28"]
+[ext_resource type="PackedScene" uid="uid://bmar8wt1n2qh7" path="res://scenes/jogador.tscn" id="7_ysdx3"]
+[ext_resource type="PackedScene" uid="uid://cm6mo1cao5611" path="res://sala/salas/intersecao.tscn" id="8_ysdx3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysdx3"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.8, 0.8, 0.8, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Environment" id="Environment_ysdx3"]
+glow_intensity = 5.45
+glow_bloom = 0.21
+adjustment_enabled = true
+adjustment_contrast = 8.0
+adjustment_saturation = 8.0
+
+[sub_resource type="GDScript" id="GDScript_ysdx3"]
+script/source = "extends Camera3D
+
+@export var follow_target: Node3D
+
+func _physics_process(_delta: float) -> void:
+	global_position.x = follow_target.global_position.x
+	global_position.z = follow_target.global_position.z
+	
+	global_rotation.y = follow_target.global_rotation.y
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8pok"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+corner_detail = 5
+
+[node name="Jogo" type="Node3D" node_paths=PackedStringArray("salas_holder")]
+script = ExtResource("1_yq54j")
+probabilidade_de_tipos = ExtResource("2_ysdx3")
+probabilidade_por_tipo = Dictionary[int, ExtResource("2_45nkh")]({
+0: ExtResource("3_ysdx3"),
+1: ExtResource("4_t8pok"),
+2: ExtResource("5_mtw28")
+})
+salas_holder = NodePath("Salas")
+
+[node name="Jogador" parent="." instance=ExtResource("7_ysdx3")]
+
+[node name="Camera3D" parent="Jogador/CameraPivot" index="0"]
+current = true
+
+[node name="Salas" type="Node3D" parent="."]
+
+[node name="Sala" parent="Salas" instance=ExtResource("8_ysdx3")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 189.0
+offset_bottom = 189.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 256.0
+scale = Vector2(-1, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ysdx3")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Control/PanelContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/PanelContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
+cull_mask = 3
+environment = SubResource("Environment_ysdx3")
+projection = 1
+size = 75.0
+script = SubResource("GDScript_ysdx3")
+follow_target = NodePath("../../../../../Jogador")
+
+[node name="Bolinha" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 124.0
+offset_right = 132.0
+offset_bottom = 132.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t8pok")
+
+[editable path="Jogador"]

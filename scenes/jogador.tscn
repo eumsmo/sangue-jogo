@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmar8wt1n2qh7"]
+
+[ext_resource type="Script" uid="uid://crtp1ebu1qcbg" path="res://jogador.gd" id="1_ss4c5"]
+[ext_resource type="Environment" uid="uid://catm7tvfnud74" path="res://scenes/camera_env.tres" id="2_uahlj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yq54j"]
+radius = 0.4
+height = 1.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_evvns"]
+radius = 0.4
+height = 1.7
+
+[node name="Jogador" type="CharacterBody3D" node_paths=PackedStringArray("pivot_camera") groups=["jogador"]]
+script = ExtResource("1_ss4c5")
+velocidade = 7.0
+pulo = 8.0
+queda = 30.0
+pivot_camera = NodePath("CameraPivot")
+sensibilidade = 0.1
+visao_min_angle = -80.0
+visao_max_angle = 90.0
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+environment = ExtResource("2_uahlj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_yq54j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+mesh = SubResource("CapsuleMesh_evvns")

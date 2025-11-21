@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ProbSalas" load_steps=6 format=3 uid="uid://bjqodluuyx37"]
+
+[ext_resource type="Script" uid="uid://dfro102dnednm" path="res://sala/probabilidade_salas.gd" id="1_2ssao"]
+[ext_resource type="PackedScene" uid="uid://db3xnd8spc0ku" path="res://sala/salas/corredor.tscn" id="1_o3hcr"]
+[ext_resource type="PackedScene" uid="uid://cm6mo1cao5611" path="res://sala/salas/intersecao.tscn" id="2_6810v"]
+[ext_resource type="PackedScene" uid="uid://bo1yxiscgjwmm" path="res://sala/salas/bifurcacao_dir.tscn" id="3_776lb"]
+[ext_resource type="PackedScene" uid="uid://tdsqsrj08mlj" path="res://sala/salas/bifurcacao_esq.tscn" id="4_yu6x3"]
+
+[resource]
+script = ExtResource("1_2ssao")
+salas = Dictionary[PackedScene, int]({
+ExtResource("1_o3hcr"): 7,
+ExtResource("2_6810v"): 2,
+ExtResource("3_776lb"): 3,
+ExtResource("4_yu6x3"): 3
+})
+metadata/_custom_type_script = "uid://dfro102dnednm"
