@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://do5615kfyeed"]
+[gd_scene load_steps=15 format=3 uid="uid://do5615kfyeed"]
 
 [ext_resource type="Script" uid="uid://bgis8ietk15hj" path="res://jogo.gd" id="1_yq54j"]
 [ext_resource type="Script" uid="uid://dfro102dnednm" path="res://sala/probabilidade_salas.gd" id="2_45nkh"]
@@ -52,6 +52,22 @@ corner_radius_bottom_right = 999
 corner_radius_bottom_left = 999
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtw28"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.19607843, 0, 0, 1)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orj5g"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.78625804, 0.094662465, 0, 1)
+corner_detail = 6
+
 [node name="Jogo" type="Node3D" node_paths=PackedStringArray("salas_holder")]
 script = ExtResource("1_yq54j")
 probabilidade_de_tipos = ExtResource("2_ysdx3")
@@ -62,7 +78,15 @@ probabilidade_por_tipo = Dictionary[int, ExtResource("2_45nkh")]({
 })
 salas_holder = NodePath("Salas")
 
-[node name="Jogador" parent="." instance=ExtResource("7_ysdx3")]
+[node name="Jogador" parent="." node_paths=PackedStringArray("vida_bar") instance=ExtResource("7_ysdx3")]
+vida = 100.0
+vida_max = 100.0
+decaimento_vida = 1.0
+vida_bar = NodePath("../HUD/HBoxContainer/ProgressBar")
+aumento_velocidade = 0.05
+decaimento_velocidade = 0.25
+buff_velocidade_pulo = 0.1
+velocidade_max = 21.0
 
 [node name="Camera3D" parent="Jogador/CameraPivot" index="0"]
 current = true
@@ -78,6 +102,7 @@ offset_right = 189.0
 offset_bottom = 189.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
@@ -92,7 +117,7 @@ layout_mode = 2
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(256, 256)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="Control/PanelContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
@@ -104,11 +129,34 @@ script = SubResource("GDScript_ysdx3")
 follow_target = NodePath("../../../../../Jogador")
 
 [node name="Bolinha" type="Panel" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 124.0
 offset_top = 124.0
 offset_right = 132.0
 offset_bottom = 132.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t8pok")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1891.0
+offset_bottom = 61.0
+theme_override_constants/separation = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/HBoxContainer"]
+custom_minimum_size = Vector2(500, 18)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_mtw28")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orj5g")
+value = 50.0
+show_percentage = false
 
 [editable path="Jogador"]

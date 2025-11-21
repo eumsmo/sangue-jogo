@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Enums="*res://globals/Enums.gd"
 Global="*res://globals/Global.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [global_group]
 
 jogador=""
