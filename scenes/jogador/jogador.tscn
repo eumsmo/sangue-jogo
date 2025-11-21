@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmar8wt1n2qh7"]
+[gd_scene load_steps=6 format=3 uid="uid://bmar8wt1n2qh7"]
 
-[ext_resource type="Script" uid="uid://crtp1ebu1qcbg" path="res://scenes/jogador.gd" id="1_ss4c5"]
+[ext_resource type="Script" uid="uid://crtp1ebu1qcbg" path="res://scenes/jogador/jogador.gd" id="1_ss4c5"]
 [ext_resource type="Environment" uid="uid://catm7tvfnud74" path="res://scenes/camera_env.tres" id="2_uahlj"]
+[ext_resource type="PackedScene" uid="uid://cv036tw8nw5mi" path="res://scenes/jogador/mao.tscn" id="3_tfr1a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yq54j"]
 radius = 0.4
@@ -11,7 +12,7 @@ height = 1.7
 radius = 0.4
 height = 1.7
 
-[node name="Jogador" type="CharacterBody3D" node_paths=PackedStringArray("pivot_camera") groups=["jogador"]]
+[node name="Jogador" type="CharacterBody3D" node_paths=PackedStringArray("pivot_camera", "mao_esquerda", "mao_direita") groups=["jogador"]]
 script = ExtResource("1_ss4c5")
 velocidade = 7.0
 pulo = 8.0
@@ -20,6 +21,8 @@ pivot_camera = NodePath("CameraPivot")
 sensibilidade = 0.1
 visao_min_angle = -80.0
 visao_max_angle = 90.0
+mao_esquerda = NodePath("CameraPivot/Moes/Mao")
+mao_direita = NodePath("CameraPivot/Moes/Mao2")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -27,6 +30,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 environment = ExtResource("2_uahlj")
+
+[node name="Moes" type="Node3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.70000005, 0.5)
+visible = false
+
+[node name="Mao" parent="CameraPivot/Moes" instance=ExtResource("3_tfr1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2310181, 0, 0.69275665)
+
+[node name="Mao2" parent="CameraPivot/Moes" instance=ExtResource("3_tfr1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.231, 0, 0.693)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cda38fbhgq5tw"]
+
+[ext_resource type="Script" uid="uid://ei6l353iwvg4" path="res://scenes/itens/item.gd" id="1_dcdhd"]
+[ext_resource type="ArrayMesh" uid="uid://vnjmqreagcg6" path="res://recursos/modelos/itens/Seringa_001.res" id="1_tf321"]
+
+[resource]
+script = ExtResource("1_dcdhd")
+nome = "Seringa"
+mesh = ExtResource("1_tf321")
+metadata/_custom_type_script = "uid://ei6l353iwvg4"

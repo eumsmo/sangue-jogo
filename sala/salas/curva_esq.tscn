@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://xtcfry0ym26v"]
 
 [ext_resource type="PackedScene" uid="uid://chjtbvkj6qix1" path="res://sala/sala.tscn" id="1_haja7"]
-[ext_resource type="ArrayMesh" uid="uid://b21y5ld5dntjh" path="res://recursos/modelos/Turn.res" id="2_rfo0l"]
+[ext_resource type="ArrayMesh" uid="uid://b21y5ld5dntjh" path="res://recursos/modelos/salas/Turn.res" id="2_rfo0l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_haja7"]
 size = Vector3(8, 1, 8)

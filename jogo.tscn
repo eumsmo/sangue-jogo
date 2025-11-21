@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://do5615kfyeed"]
+[gd_scene load_steps=17 format=3 uid="uid://do5615kfyeed"]
 
 [ext_resource type="Script" uid="uid://bgis8ietk15hj" path="res://jogo.gd" id="1_yq54j"]
 [ext_resource type="Script" uid="uid://dfro102dnednm" path="res://sala/probabilidade_salas.gd" id="2_45nkh"]
@@ -6,8 +6,10 @@
 [ext_resource type="Resource" uid="uid://bjqodluuyx37" path="res://sala/probabilidades/salas_continuas.tres" id="3_ysdx3"]
 [ext_resource type="Resource" uid="uid://bujs1xljtmkc1" path="res://sala/probabilidades/salas_curvas.tres" id="4_t8pok"]
 [ext_resource type="Resource" uid="uid://bffjs1sx55qar" path="res://sala/probabilidades/salas_fim.tres" id="5_mtw28"]
-[ext_resource type="PackedScene" uid="uid://bmar8wt1n2qh7" path="res://scenes/jogador.tscn" id="7_ysdx3"]
+[ext_resource type="PackedScene" uid="uid://bmar8wt1n2qh7" path="res://scenes/jogador/jogador.tscn" id="7_ysdx3"]
 [ext_resource type="PackedScene" uid="uid://cm6mo1cao5611" path="res://sala/salas/intersecao.tscn" id="8_ysdx3"]
+[ext_resource type="PackedScene" uid="uid://cap8sj03hvh72" path="res://scenes/itens/item_dropado.tscn" id="9_t8pok"]
+[ext_resource type="Resource" uid="uid://clmtxcsc08t5p" path="res://scenes/itens/resources/alicate.tres" id="10_mtw28"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysdx3"]
 content_margin_left = 0.0
@@ -88,21 +90,24 @@ decaimento_velocidade = 0.25
 buff_velocidade_pulo = 0.1
 velocidade_max = 21.0
 
-[node name="Camera3D" parent="Jogador/CameraPivot" index="0"]
-current = true
-
 [node name="Salas" type="Node3D" parent="."]
 
 [node name="Sala" parent="Salas" instance=ExtResource("8_ysdx3")]
 
+[node name="ItemDropado" parent="Salas" instance=ExtResource("9_t8pok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+item = ExtResource("10_mtw28")
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 189.0
-offset_bottom = 189.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
-visible = false
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
@@ -117,7 +122,7 @@ layout_mode = 2
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(256, 256)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Control/PanelContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
@@ -158,5 +163,3 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mtw28")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orj5g")
 value = 50.0
 show_percentage = false
-
-[editable path="Jogador"]

@@ -26,6 +26,11 @@ var velocidade_atual: float
 @export var visao_max_angle: float
 
 
+@export_group("Mões")
+@export var mao_esquerda: Node3D
+@export var mao_direita: Node3D
+
+var inventario: Array[Item]
 
 var ultima_pos: Vector3
 
@@ -85,7 +90,7 @@ func _handle_velocidade(delta: float) -> void:
 		velocidade_atual = lerpf(velocidade_atual, velocidade_max, delta * aumento_velocidade * mult)
 	
 	ultima_pos = global_position
-	print(velocidade_atual)
+	# print(velocidade_atual)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_jump") and is_on_floor():
@@ -103,3 +108,12 @@ func atualizar_vida_display():
 	vida_bar.min_value = 0
 	vida_bar.max_value = vida_max
 	vida_bar.value = vida
+
+
+func adicionar_ao_inventario(item: Item) -> bool:
+	if len(inventario) >= 3:
+		return false
+	
+	inventario.append(item)
+	print("inventario: " + str(inventario))
+	return true

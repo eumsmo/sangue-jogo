@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://biibtjokm0igm"]
 
 [ext_resource type="PackedScene" uid="uid://chjtbvkj6qix1" path="res://sala/sala.tscn" id="1_a8mba"]
-[ext_resource type="ArrayMesh" uid="uid://bkmovd1i4v34u" path="res://recursos/modelos/Fork.res" id="2_kk6df"]
+[ext_resource type="ArrayMesh" uid="uid://bkmovd1i4v34u" path="res://recursos/modelos/salas/Fork.res" id="2_kk6df"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0e6hh"]
 size = Vector3(12, 1, 8)

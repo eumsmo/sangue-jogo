@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c6ft4m0ci56jr"]
+
+[ext_resource type="ArrayMesh" uid="uid://b16jfeuycl6m8" path="res://recursos/modelos/itens/Dente.res" id="1_5siy0"]
+[ext_resource type="Script" uid="uid://ei6l353iwvg4" path="res://scenes/itens/item.gd" id="1_f1wr3"]
+
+[resource]
+script = ExtResource("1_f1wr3")
+nome = "Dente"
+mesh = ExtResource("1_5siy0")
+metadata/_custom_type_script = "uid://ei6l353iwvg4"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://db3xnd8spc0ku"]
 
 [ext_resource type="PackedScene" uid="uid://chjtbvkj6qix1" path="res://sala/sala.tscn" id="1_h0fi3"]
-[ext_resource type="ArrayMesh" uid="uid://d0d5y3vm5lx7n" path="res://recursos/modelos/CleanHall.tres" id="2_h0fi3"]
+[ext_resource type="ArrayMesh" uid="uid://d0d5y3vm5lx7n" path="res://recursos/modelos/salas/CleanHall.tres" id="2_h0fi3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5o4y"]
 size = Vector3(4, 1, 8)
