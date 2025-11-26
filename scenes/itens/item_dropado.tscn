@@ -1,10 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://cap8sj03hvh72"]
 
 [ext_resource type="Script" uid="uid://b7cs7iw8qvd2b" path="res://scenes/itens/item_dropado.gd" id="1_tae0d"]
-[ext_resource type="ArrayMesh" uid="uid://ceqamh0dax3r8" path="res://recursos/modelos/itens/Motoserra.res" id="2_1hv60"]
+[ext_resource type="ArrayMesh" uid="uid://ctoo3l5m5dxrj" path="res://recursos/modelos/itens/Motoserra.res" id="2_1hv60"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mtw28"]
 height = 3.0
+radius = 1.0
 
 [node name="ItemDropado" type="Node3D" node_paths=PackedStringArray("mesh", "modelo")]
 script = ExtResource("1_tae0d")
@@ -28,5 +29,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27016306, 0, 0)
 mesh = ExtResource("2_1hv60")
 skeleton = NodePath("../../..")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

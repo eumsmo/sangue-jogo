@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://do5615kfyeed"]
+[gd_scene load_steps=20 format=3 uid="uid://do5615kfyeed"]
 
 [ext_resource type="Script" uid="uid://bgis8ietk15hj" path="res://jogo.gd" id="1_yq54j"]
 [ext_resource type="Script" uid="uid://dfro102dnednm" path="res://sala/probabilidade_salas.gd" id="2_45nkh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cm6mo1cao5611" path="res://sala/salas/intersecao.tscn" id="8_ysdx3"]
 [ext_resource type="PackedScene" uid="uid://cap8sj03hvh72" path="res://scenes/itens/item_dropado.tscn" id="9_t8pok"]
 [ext_resource type="Resource" uid="uid://clmtxcsc08t5p" path="res://scenes/itens/resources/alicate.tres" id="10_mtw28"]
+[ext_resource type="Texture2D" uid="uid://k12xry2s1hv3" path="res://icon.svg" id="11_orj5g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysdx3"]
 content_margin_left = 0.0
@@ -70,6 +71,32 @@ content_margin_bottom = 2.0
 bg_color = Color(0.78625804, 0.094662465, 0, 1)
 corner_detail = 6
 
+[sub_resource type="GDScript" id="GDScript_orj5g"]
+script/source = "extends HBoxContainer
+
+@export var inventario: Node
+@export var slot: TextureRect
+
+func _ready() -> void:
+	inventario.on_slot_change.connect(handle_slot_change)
+
+func handle_slot_change(_slot_idx: int, item: Item):
+	if item != null:
+		slot.texture = item.sprite
+		slot.visible = true
+	else:
+		slot.visible = false
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01kpq"]
+bg_color = Color(0.2509804, 0, 0, 0.49803922)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5411765, 0, 0, 0)
+
 [node name="Jogo" type="Node3D" node_paths=PackedStringArray("salas_holder")]
 script = ExtResource("1_yq54j")
 probabilidade_de_tipos = ExtResource("2_ysdx3")
@@ -103,8 +130,10 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_bottom = 256.0
+offset_left = -274.0
+offset_top = 16.0
+offset_right = -18.0
+offset_bottom = 272.0
 grow_horizontal = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
@@ -112,7 +141,7 @@ layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
-scale = Vector2(-1, 1)
+scale = Vector2(-0.75, 0.75)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ysdx3")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer"]
@@ -134,19 +163,18 @@ script = SubResource("GDScript_ysdx3")
 follow_target = NodePath("../../../../../Jogador")
 
 [node name="Bolinha" type="Panel" parent="Control"]
-visible = false
 layout_mode = 0
-offset_left = 124.0
-offset_top = 124.0
-offset_right = 132.0
-offset_bottom = 132.0
+offset_left = 158.0
+offset_top = 94.0
+offset_right = 162.0
+offset_bottom = 98.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t8pok")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 layout_mode = 0
@@ -163,3 +191,45 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mtw28")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orj5g")
 value = 50.0
 show_percentage = false
+
+[node name="Inventario" type="HBoxContainer" parent="HUD" node_paths=PackedStringArray("inventario", "slot")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -128.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(250, 108)
+alignment = 1
+script = SubResource("GDScript_orj5g")
+inventario = NodePath("../../Jogador/Inventario")
+slot = NodePath("Panel/TextureRect")
+
+[node name="Panel" type="Panel" parent="HUD/Inventario"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_01kpq")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Inventario/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_orj5g")
+expand_mode = 1
+
+[editable path="Jogador"]

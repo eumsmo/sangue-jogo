@@ -27,10 +27,10 @@ var velocidade_atual: float
 
 
 @export_group("Mões")
+@export var inventario: Node
 @export var mao_esquerda: Node3D
 @export var mao_direita: Node3D
 
-var inventario: Array[Item]
 
 var ultima_pos: Vector3
 
@@ -101,7 +101,37 @@ func _input(event: InputEvent) -> void:
 		look_rot.y -= event.relative.x * sensibilidade
 		look_rot.x -= -event.relative.y * sensibilidade
 		look_rot.x = clamp(look_rot.x, visao_min_angle, visao_max_angle)
-
+	
+	if item_proximo != null:
+		if event.is_action_pressed("player_left_hand") and mao_esquerda.livre:
+			mao_esquerda.botar_na_mao(item_proximo.item)
+			item_proximo.coletar()
+			item_proximo = null
+		elif event.is_action_pressed("player_right_hand") and mao_direita.livre:
+			mao_direita.botar_na_mao(item_proximo.item)
+			item_proximo.coletar()
+			item_proximo = null
+	
+	if event.is_action_pressed("player_left_inventory"):
+		if mao_esquerda.livre:
+			var item = inventario.pegar_pela_esquerda(true)
+			mao_esquerda.botar_na_mao(item)
+		else:
+			var item_segurado = mao_esquerda.remover_da_mao()
+			var item = inventario.pegar_pela_esquerda()
+			inventario.adicionar_pela_esquerda(item_segurado)
+			mao_esquerda.botar_na_mao(item)
+			
+	if event.is_action_pressed("player_right_inventory"):
+		if mao_direita.livre:
+			var item = inventario.pegar_pela_direita(true)
+			mao_direita.botar_na_mao(item)
+		else:
+			var item_segurado = mao_direita.remover_da_mao()
+			var item = inventario.pegar_pela_direita()
+			inventario.adicionar_pela_direita(item_segurado)
+			mao_direita.botar_na_mao(item)
+			
 
 
 func atualizar_vida_display():
@@ -110,10 +140,11 @@ func atualizar_vida_display():
 	vida_bar.value = vida
 
 
-func adicionar_ao_inventario(item: Item) -> bool:
-	if len(inventario) >= 3:
-		return false
-	
-	inventario.append(item)
-	print("inventario: " + str(inventario))
-	return true
+var item_proximo = null
+func set_item_proximo(item_dropado: Node3D):
+	item_proximo = item_dropado
+
+func remove_item_proximo(item_dropado: Node3D):
+	if item_proximo == item_dropado:
+		item_proximo = null
+		

@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ditbhclov4ra2"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://ditbhclov4ra2"]
 
-[ext_resource type="ArrayMesh" uid="uid://ceqamh0dax3r8" path="res://recursos/modelos/itens/Motoserra.res" id="1_2f05q"]
+[ext_resource type="ArrayMesh" uid="uid://ctoo3l5m5dxrj" path="res://recursos/modelos/itens/Motoserra.res" id="1_2f05q"]
 [ext_resource type="Script" uid="uid://ei6l353iwvg4" path="res://scenes/itens/item.gd" id="1_ayk5w"]
+[ext_resource type="Texture2D" uid="uid://ccp77xyafakqf" path="res://recursos/imagens/motoserra.png" id="3_pebrs"]
 
 [resource]
 script = ExtResource("1_ayk5w")
 nome = "Motoserra"
 mesh = ExtResource("1_2f05q")
+sprite = ExtResource("3_pebrs")
 metadata/_custom_type_script = "uid://ei6l353iwvg4"
